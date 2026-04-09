@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="color: #d9534f; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">The VIPs (Public Figures)</h2>
+<a href="{{ url_for('add_vip') }}" role="button" style="margin-bottom: 1rem;">Add New Accomplice</a>
+
+<figure>
+    <table role="grid">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Official Alibi</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vip in vips %}
+            <tr>
+                <td>{{ vip['id'] }}</td>
+                <td>{{ vip['name'] }}</td>
+                <td>{{ vip['alibi'] }}</td>
+                <td>
+                    <a href="{{ url_for('edit_vip', id=vip['id']) }}" role="button" class="outline" style="padding: 0.2rem 0.5rem;">Edit Alibi</a>
+                    <form action="{{ url_for('delete_vip', id=vip['id']) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="danger" style="padding: 0.2rem 0.5rem; width: auto; margin-bottom: 0;">Redact</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No records found. The log is clean.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</figure>
+{% endblock %}

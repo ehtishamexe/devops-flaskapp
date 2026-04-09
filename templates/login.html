@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<article style="max-width: 500px; margin: 0 auto; text-align: center; border: 1px solid #d9534f; box-shadow: 0 0 15px rgba(217, 83, 79, 0.2);">
+    <header style="border-bottom: 1px solid #333; padding-bottom: 1rem; margin-bottom: 1rem;">
+        <h2 style="color: #d9534f; margin-bottom: 0.5rem;">Jeffery Epstein Island</h2>
+        <p style="color: #aaa; margin: 0;">Authorized Personnel Only.</p>
+    </header>
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required style="background-color: #111; border-color: #333; color: #fff;">
+        <input type="password" name="password" placeholder="Password" required style="background-color: #111; border-color: #333; color: #fff;">
+        <button type="submit" class="danger" style="width: 100%; margin-top: 1rem;">Access Mainframe</button>
+    </form>
+    <footer style="border-top: 1px solid #333; padding-top: 1rem; margin-top: 1rem;">
+        <small style="color: #888;">Guest Credentials:<br>Username: <code style="color: #d9534f; background: #222;">guest_admin</code><br>Password: <code style="color: #d9534f; background: #222;">i_plead_the_5th</code></small>
+    </footer>
+</article>
+{% endblock %}

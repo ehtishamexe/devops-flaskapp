@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Flight Log</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        :root {
+            --primary: #d9534f;
+            --primary-hover: #c9302c;
+            --primary-focus: rgba(217, 83, 79, 0.25);
+            --primary-inverse: #fff;
+            --background-color: #0a0a0a;
+            --color: #e0e0e0;
+            --card-background-color: #141414;
+            --card-border-color: #333;
+            --form-element-background-color: #1a1a1a;
+            --form-element-border-color: #333;
+            --form-element-active-border-color: var(--primary);
+            --form-element-focus-color: var(--primary-focus);
+        }
+        body { background-color: var(--background-color); color: var(--color); }
+        h1, h2, h3, h4, h5, h6 { color: #fff; }
+        .container { margin-top: 2rem; }
+        .danger { background-color: #d9534f; border-color: #d43f3a; color: white; }
+        .danger:hover { background-color: #c9302c; border-color: #ac2925; }
+        nav strong { color: #d9534f; }
+        a { color: #d9534f; }
+        a:hover { color: #c9302c; }
+        button, input[type="submit"], input[type="button"], [role="button"] {
+            background-color: #d9534f;
+            border-color: #d43f3a;
+            color: white;
+        }
+        button:hover, input[type="submit"]:hover, input[type="button"]:hover, [role="button"]:hover {
+            background-color: #c9302c;
+            border-color: #ac2925;
+        }
+        [role="button"].outline {
+            background-color: transparent;
+            color: #d9534f;
+            border-color: #d9534f;
+        }
+        [role="button"].outline:hover {
+            background-color: #d9534f;
+            color: white;
+        }
+        [role="button"].secondary {
+            background-color: #333;
+            border-color: #222;
+            color: white;
+        }
+        [role="button"].secondary:hover {
+            background-color: #444;
+            border-color: #333;
+        }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border-bottom: 1px solid #333; padding: 0.75rem; text-align: left; }
+        th { color: #d9534f; }
+        tr:hover { background-color: #1a1a1a; }
+    </style>
+</head>
+<body>
+    <main class="container">
+        {% if session.get('logged_in') %}
+        <nav>
+            <ul>
+                <li><strong>The Flight Log</strong></li>
+            </ul>
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}">Command Center</a></li>
+                <li><a href="{{ url_for('logout') }}" role="button" class="outline">Burn Identity (Logout)</a></li>
+            </ul>
+        </nav>
+        <hr>
+        {% endif %}
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <article style="background-color: #8b0000; color: white; padding: 1rem; margin-bottom: 1rem;">{{ message }}</article>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

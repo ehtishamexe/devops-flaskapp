@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="color: #d9534f; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">{{ action }} Fixer</h2>
+<form method="POST">
+    <label for="username" style="color: #aaa;">Username</label>
+    <input type="text" id="username" name="username" placeholder="Enter burner alias" value="{{ fixer['username'] if fixer else '' }}" required style="background-color: #111; border-color: #333; color: #fff;">
+    
+    <label for="password" style="color: #aaa;">Password</label>
+    <input type="text" id="password" name="password" placeholder="Plain text password" value="{{ fixer['password'] if fixer else '' }}" required style="background-color: #111; border-color: #333; color: #fff;">
+    
+    <button type="submit" class="danger">Save Fixer</button>
+    <a href="{{ url_for('fixers') }}" role="button" class="secondary outline">Cancel</a>
+</form>
+{% endblock %}

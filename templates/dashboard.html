@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="text-align: center; margin-top: 3rem;">
+    <h1 style="color: #d9534f;">Welcome To Jeffery Epstein Island.</h1>
+    <p><em>Please ensure all tracking devices are turned off before modifying the logs.</em></p>
+    
+    <div style="background-color: #1a1a1a; border-left: 4px solid #d9534f; padding: 1rem; margin: 2rem auto; max-width: 800px; text-align: left; box-shadow: 0 0 10px rgba(217, 83, 79, 0.1);">
+        <h4 style="color: #d9534f; margin-top: 0; margin-bottom: 0.5rem; font-family: monospace;">> SYSTEM_STATUS_ALERTS</h4>
+        <ul style="margin-bottom: 0; color: #aaa; font-family: monospace; list-style-type: none; padding-left: 0;">
+            <li><span style="color: #5cb85c;">[OK]</span> Server uptime: 4,592 days without an FBI raid.</li>
+            <li><span style="color: #f0ad4e;">[WARNING]</span> 3 unauthorized subpoenas blocked in the last 24 hours.</li>
+            <li><span style="color: #d9534f;">[ALERT]</span> The shredder in the main office is jammed again. Please use the burn pit.</li>
+            <li><span style="color: #5bc0de;">[INFO]</span> Cameras in cell block 4 are currently scheduled for "routine maintenance".</li>
+            <li><span style="color: #5cb85c;">[OK]</span> Offshore accounts successfully routed through 7 shell companies.</li>
+        </ul>
+    </div>
+
+    <div class="grid" style="margin-top: 3rem; margin-bottom: 3rem;">
+        <a href="{{ url_for('vips') }}" role="button" style="padding: 1rem; font-size: 1.2rem;">Path A: Scrub The Flight Log</a>
+        <a href="{{ url_for('fixers') }}" role="button" class="secondary" style="padding: 1rem; font-size: 1.2rem;">Path B: Manage The Fixers</a>
+    </div>
+</div>
+
+<h2 style="color: #d9534f; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">Recent Flight Log Entries</h2>
+<figure>
+    <table role="grid">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Official Alibi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vip in vips %}
+            <tr>
+                <td>{{ vip['id'] }}</td>
+                <td>{{ vip['name'] }}</td>
+                <td>{{ vip['alibi'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No records found. The log is clean.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</figure>
+{% endblock %}

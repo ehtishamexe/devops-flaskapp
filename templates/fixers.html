@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="color: #d9534f; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">The Fixers (System Admins)</h2>
+<a href="{{ url_for('add_fixer') }}" role="button" style="margin-bottom: 1rem;">Add New Fixer</a>
+
+<figure>
+    <table role="grid">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fixer in fixers %}
+            <tr>
+                <td>{{ fixer['id'] }}</td>
+                <td>{{ fixer['username'] }}</td>
+                <td>{{ fixer['password'] }}</td>
+                <td>
+                    <a href="{{ url_for('edit_fixer', id=fixer['id']) }}" role="button" class="outline" style="padding: 0.2rem 0.5rem;">Edit</a>
+                    <form action="{{ url_for('delete_fixer', id=fixer['id']) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="danger" style="padding: 0.2rem 0.5rem; width: auto; margin-bottom: 0;">Redact</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No fixers found. Who is running this place?</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</figure>
+{% endblock %}

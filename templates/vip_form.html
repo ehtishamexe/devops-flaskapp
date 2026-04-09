@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="color: #d9534f; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">{{ action }} Accomplice</h2>
+<form method="POST">
+    <label for="name" style="color: #aaa;">Name</label>
+    <input type="text" id="name" name="name" placeholder="e.g., Prince A..." value="{{ vip['name'] if vip else '' }}" required style="background-color: #111; border-color: #333; color: #fff;">
+    
+    <label for="alibi" style="color: #aaa;">Official Alibi</label>
+    <select id="alibi" name="alibi" required style="background-color: #111; border-color: #333; color: #fff;">
+        <option value="" disabled {% if not vip %}selected{% endif %}>Select an alibi...</option>
+        {% set options = ["Philanthropy Meeting", "Getting Financial Advice", "Never Met Him", "My PR Team Was Hacked", "Pleaded the 5th", "Checking the island's Wi-Fi", "Making the evidence disappear", "Kept my underwear on", "Thought it was a Disney cruise", "Tax write-off purposes", "Looking for the bathroom", "I was hacked", "It was my evil twin", "I thought it was Epstein's brother, Jeff", "Just there for the snorkeling", "Researching a movie role"] %}
+        {% for opt in options %}
+            <option value="{{ opt }}" {% if vip and vip['alibi'] == opt %}selected{% endif %}>{{ opt }}</option>
+        {% endfor %}
+    </select>
+    
+    <button type="submit" class="danger">Save Record</button>
+    <a href="{{ url_for('vips') }}" role="button" class="secondary outline">Cancel</a>
+</form>
+{% endblock %}
